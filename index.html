@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Beta and Alpha</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval';" />
+</head>
+
+<body style="background: white;">
+
+    <script>
+        let scheduled = false;
+        function f() {
+            if (scheduled) {
+                scheduled = false;
+                window.ipcRenderer.send('betaalpha', { value: window.betaalpha.value });
+            }
+            else {
+                scheduled = true;
+                setTimeout(f,500);
+            }            
+
+        }
+    </script>
+    𝛽𝛼=<input type="edit" id="betaalpha" onchange="f()"/><br>
+(Use 0 for 10 and Z for zero)
+</body>
+
+</html>
